@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <title>TIU | Curso de cartografía digital</title>
+</head>
+
+<style>
+    body {
+      background-color: linen;
+    }
+    
+    h3 {
+      color: #ffffff;
+      
+    }
+
+    h6 {
+        color: #c0c0c0
+    }
+</style>
+
+    <form method="POST">
+        <div>
+            <!--
+            <div style="background-color:#FFFFFF; text-align:center">
+              <h1><img src="{{url_for('static', filename='LOGO-NAVIGATE-SIN-BAJADA-1.svg')}}" width="140"></h1>
+            <div style="background-color:#000000; text-align:center">
+                <h1><img src="{{url_for('static', filename='globant-light-bg-color.png')}}"></h1>            
+            -->  
+            <div style="background-color:#ff5d72; text-align:left">
+                <h3><img src="{{url_for('static', filename='Logo bl.png')}}" width="140"> Curso de Cartografía Digital</h3>
+                <hr />
+            </div>
+
+            <div style="text-align:center">
+                
+                <iframe class="map", src="/mapa-generado" width="600" height="400"></iframe>
+                <br/>
+                <br/>
+                <button type="button" class="btn btn-outline-success" onclick="window.location.href='/mapa-generado'">¡VER MAPA COMPLETO!</button>
+                <br/>
+                <br/>
+                <select name="capa" >
+                    {% for key, value in tablas.items() %}
+                        <option value="{{ key }}">{{ value }}</option>
+                    {% endfor %}
+                </select>
+                <br/>
+                <button type="submit" class="btn btn-outline-success">¡ DESCARGAR CAPA SELECCIONADA !</button>
+                <br/> 
+                <br/>
+                <h6>Powered by @innovacionurbana.mx</h6>
+            </div>
+        </div>
+    </form>
+</html>
