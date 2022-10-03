@@ -40,6 +40,6 @@ def index():
 def mapa_generado():
     return render_template('mapa_generado.html')
 
-
+# Antes de hacer deploy hay que setear el debug a False
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)
