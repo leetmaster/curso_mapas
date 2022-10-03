@@ -3,11 +3,11 @@ from funciones import obtener_datos, unir_capas, crear_capa
 import folium
 import pandas as pd
 
-app = Flask(__name__)
-app.config["TEMPLATES_AUTO_RELOAD"] = True
-app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
+application = Flask(__name__)
+application.config["TEMPLATES_AUTO_RELOAD"] = True
+application.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 
-@app.route("/", methods=["GET", "POST"])
+@application.route("/", methods=["GET", "POST"])
 def index():
     # Configuración de la Base de Datos
     database = {'db_name': 'curso_mapas', 'user': 'postgres', 'password': 'password', 'host': 'localhost', 'port': 5432}
@@ -36,10 +36,10 @@ def index():
 
     return render_template('index.html', tablas =tablas)
 
-@app.route('/mapa-generado')
+@application.route('/mapa-generado')
 def mapa_generado():
     return render_template('mapa_generado.html')
 
 # Antes de hacer deploy hay que setear el debug a False
 if __name__ == '__main__':
-    app.run(debug=False)
+    application.run(debug=False)
