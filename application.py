@@ -14,7 +14,7 @@ THIS_FOLDER = Path(__file__).parent.resolve()
 @app.route("/", methods=["GET", "POST"])
 def index():
     # Configuración de la Base de Datos
-    database = {'db_name': 'leetmaster$mapas', 'user': 'leetmaster', 'password': '_P_#A!x3uAqVPRJ', 'host': 'leetmaster.mysql.pythonanywhere-services.com'}
+    database = {'db_name': '{nombre_base}', 'user': '{nombre_usuario}', 'password': '{password}', 'host': '{host_base}'}
 
     if request.method == 'POST':
         database['table_name'] = request.form['capa']
@@ -52,8 +52,7 @@ def mapa_generado():
 # Ponemos una ruta para guardar el contenido de los CSV a la base de datos
 @app.route('/escribir_datos')
 def escribir_datos():
-    database = {'db_name': 'leetmaster$mapas', 'user': 'leetmaster', 'password': '_P_#A!x3uAqVPRJ', 'host': 'leetmaster.mysql.pythonanywhere-services.com'}
-
+    database = {'db_name': '{nombre_base}', 'user': '{nombre_usuario}', 'password': '{password}', 'host': '{host_base}'}
     engine = create_engine(f"mysql+pymysql://{database['user']}:{database['password']}@{database['host']}/{database['db_name']}")
 
     puntos = pd.read_csv(THIS_FOLDER / 'datos/puntos.csv')
