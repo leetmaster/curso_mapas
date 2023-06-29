@@ -1,21 +1,25 @@
 import pandas as pd
-from sqlalchemy import create_engine, inspect
+from sqlalchemy import create_engine
 from sqlalchemy_utils import database_exists, create_database
+from pathlib import Path
 import re
 import random
 import folium
-from folium import FeatureGroup, LayerControl, Map, Marker
+
+THIS_FOLDER = Path(__file__).parent.resolve()
 
 def transformar_coordenadas(df):
+
     final_coords = []
     for wkt in list(df['WKT']):
         coords = re.sub(r'[a-zA-Z()]', '', wkt).strip().split(',')
         final_coords.append(list(map(lambda x: (float(x.split(' ')[1]), float(x.split(' ')[0])), coords)))
+
     return final_coords
 
 
 def capa(df, coordenadas, tipo, nombre_capa, mostrar=False):
-    feature_group = FeatureGroup(name=nombre_capa, show=mostrar)  # overlay=False
+    feature_group = folium.FeatureGroup(name=nombre_capa, show=mostrar)  # overlay=False
 
     for index, coords in enumerate(coordenadas):
 
@@ -44,12 +48,11 @@ def capa(df, coordenadas, tipo, nombre_capa, mostrar=False):
 
     return feature_group
 
-
 def unir_capas(m, capas):
     for capa in capas:
         capa.add_to(m)
-    LayerControl().add_to(m)
-    m.save('templates/mapa_generado.html')
+    folium.LayerControl().add_to(m)
+    m.save(THIS_FOLDER / 'templates/mapa_generado.html')
     return m
 
 def popup(row):
@@ -62,25 +65,23 @@ def popup(row):
 def crear_capa(database, tabla, tipo, nombre_capa, mostrar = False):
 
     if isinstance(database, dict):
-        database['table_name'] = tabla 
+        database['table_name'] = tabla
         df = obtener_datos(database)
-    else: 
+    else:
         df = pd.read_csv(database)
+
     coordenadas = transformar_coordenadas(df)
     return capa(df, coordenadas, tipo, nombre_capa, mostrar)
 
 
 def obtener_datos(database):
+    engine = create_engine(f"mysql+pymysql://{database['user']}:{database['password']}@{database['host']}/{database['db_name']}")
 
-    engine = create_engine(f"postgresql+psycopg2://{database['user']}:{database['password']}@{database['host']}:{database['port']}/{database['db_name']}")
-    if not inspect(engine).has_table(database['table_name'], schema="public"):
-        return False
     return pd.read_sql_query(f'SELECT * FROM {database["table_name"]}', engine)
 
-def AddDatosTabla(data, database):
 
-    engine = create_engine(f"postgresql+psycopg2://{database['user']}:{database['password']}@{database['host']}:{database['port']}/{database['db_name']}")
-    if not database_exists(engine.url):
-        create_database(engine.url)
+def AddDatosTabla(data, database):
+    #engine = create_engine(f"mysql+pymysql://{database['user']}:{database['password']}@{database['host']}/{database['db_name']}")
+
     data.to_sql(database['table_name'], engine, if_exists= 'append', index=False)
-    
+
