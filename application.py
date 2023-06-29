@@ -18,8 +18,8 @@ def index():
 
     if request.method == 'POST':
         database['table_name'] = request.form['capa']
-        df = obtener_datos(database)
-        #df = pd.read_csv(f'{THIS_FOLDER}/datos/{request.form["capa"]}.csv')
+        #df = obtener_datos(database)
+        df = pd.read_csv(f'{THIS_FOLDER}/datos/{request.form["capa"]}.csv')
         df.to_csv(THIS_FOLDER / 'datos/capa_descargada.csv', index=False)
         return send_file(THIS_FOLDER / 'datos/capa_descargada.csv', download_name=f"{request.form['capa']}.csv", as_attachment=True)
 
@@ -31,7 +31,7 @@ def index():
 
     # Crear Capas
     #database, tabla, tipo (Punto, Poligono, Linea), nombre_capa, mostrar = False
-    """
+    
     capa_puntos= crear_capa(THIS_FOLDER / 'datos/puntos.csv', '', 'Punto', 'Capa Preescolar de Puntos', mostrar = True)
     capa_lineas = crear_capa(THIS_FOLDER / 'datos/lineas.csv', '', 'Linea', 'Capa Calles de Lineas', mostrar=False)
     capa_poligono = crear_capa(THIS_FOLDER / 'datos/poligonos.csv', '', 'Poligono', 'Capa Manzanas de Poligionos', mostrar=False)
@@ -39,7 +39,7 @@ def index():
     capa_puntos= crear_capa(database, 'puntos', 'Punto', 'Capa Preescolar de Puntos', mostrar = True)
     capa_lineas = crear_capa(database, 'lineas', 'Linea', 'Capa Calles de Lineas', mostrar=False)
     capa_poligono = crear_capa(database, 'poligonos', 'Poligono', 'Capa Manzanas de oligionos', mostrar=False)
-
+    """
     # Añadir las capas al mapa
     unir_capas(m, [capa_puntos, capa_lineas, capa_poligono])
 
