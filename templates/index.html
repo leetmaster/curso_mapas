@@ -8,37 +8,36 @@
 
 <style>
     body {
-      background-color: linen;
+      background-color: #faf0e6;
     }
-    
+
     h3 {
       color: #ffffff;
-      
+
     }
 
     h6 {
         color: #c0c0c0
     }
+
+    p {
+        color: #400200;
+    }
 </style>
 
     <form method="POST">
         <div>
-            <!--
-            <div style="background-color:#FFFFFF; text-align:center">
-              <h1><img src="{{url_for('static', filename='LOGO-NAVIGATE-SIN-BAJADA-1.svg')}}" width="140"></h1>
-            <div style="background-color:#000000; text-align:center">
-                <h1><img src="{{url_for('static', filename='globant-light-bg-color.png')}}"></h1>            
-            -->  
             <div style="background-color:#ff5d72; text-align:left">
-                <h3><img src="{{url_for('static', filename='Logo bl.png')}}" width="140"> Curso de Cartografía Digital</h3>
+                <h3><img src="{{url_for('static', filename='Logo_bl.png')}}" width="140"> Curso de Cartografía Digital</h3>
                 <hr />
             </div>
 
             <div style="text-align:center">
-                
-                <iframe class="map", src="/mapa-generado" width="600" height="400"></iframe>
+
+                <iframe class="map", src="/mapa-generado" width="600" height="480"></iframe>
                 <br/>
-                <br/>
+                <p>Seattle es conocida como la cuna de Starbucks, pero este mapa muestra otra perspectiva: la distribución de 269 cafeterías independientes, la Línea 1 del Link Light Rail y los barrios de la ciudad. Más que confirmar una historia conocida, invita a observar cómo los datos revelan los patrones cotidianos que construyen la identidad de un lugar.</p>
+
                 <button type="button" class="btn btn-outline-success" onclick="window.location.href='/mapa-generado'">¡VER MAPA COMPLETO!</button>
                 <br/>
                 <br/>
@@ -49,9 +48,9 @@
                 </select>
                 <br/>
                 <button type="submit" class="btn btn-outline-success">¡ DESCARGAR CAPA SELECCIONADA !</button>
-                <br/> 
                 <br/>
-                <h6>Powered by @innovacionurbana.mx</h6>
+                <br/>
+                <h6>Powered by <a href="https://github.com/leetmaster/curso_mapas">@leetmaster</a></h6>
             </div>
         </div>
     </form>
