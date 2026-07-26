@@ -1,6 +1,6 @@
 # Interactive GIS Maps
 
-Utilizamos Python para generar un mapa web interactivo a partir de archivos CSV (que tamibén podemos subir a tablas en MySQL) que contienen geometrías en formato WKT. El proyecto utiliza Pandas, Shapely y Folium para representar automáticamente puntos, líneas y polígonos como capas independientes, con soporte para marcadores personalizados, ventanas emergentes y control de visibilidad. Su objetivo es facilitar la exploración y comunicación de datos geoespaciales sin depender de software SIG de escritorio, mediante una arquitectura sencilla y reutilizable para proyectos de análisis territorial, visualización de datos y cartografía digital.
+Utilizamos Python para generar un mapa web interactivo a partir de archivos CSV (que también podemos subir a tablas en MySQL) que contienen geometrías en formato WKT. El proyecto utiliza Pandas, Shapely y Folium para representar automáticamente puntos, líneas y polígonos como capas independientes, con soporte para marcadores personalizados, ventanas emergentes y control de visibilidad. Su objetivo es facilitar la exploración y comunicación de datos geoespaciales sin depender de software SIG de escritorio, mediante una arquitectura sencilla y reutilizable para proyectos de análisis territorial, visualización de datos y cartografía digital.
 
 ### Antes de empezar:
 - Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy Unrestricted
@@ -12,3 +12,5 @@ Utilizamos Python para generar un mapa web interactivo a partir de archivos CSV 
 
 ### El resultado del proyecto se puede visualizar en:
 https://leetmaster.pythonanywhere.com
+
+<img width="598" height="481" alt="image" src="https://github.com/user-attachments/assets/591da8ef-22d0-41c7-959c-85e2d2ca9251" />
