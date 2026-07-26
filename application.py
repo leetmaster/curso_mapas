@@ -67,17 +67,25 @@ def escribir_datos():
     Servicio para escribir los datos en la base
     ===========================================
     """
-    database = {'db_name': '{nombre_de_base}', 'user': '{nombre_de usuario}', 'password': '{password}', 'host': '{direccion_de_la_base}'}
-    
-    puntos = pd.read_csv(THIS_FOLDER / 'datos/puntos.csv')
-    lineas = pd.read_csv(THIS_FOLDER / 'datos/lineas.csv')
-    poligonos = pd.read_csv(THIS_FOLDER / 'datos/poligonos.csv')
-
     engine = create_engine(f"mysql+pymysql://{database['user']}:{database['password']}@{database['host']}/{database['db_name']}")
     
-    puntos.to_sql('puntos', engine, if_exists='replace', index=False)
-    lineas.to_sql('lineas', engine, if_exists='replace', index=False)    
-    poligonos.to_sql('poligonos', engine, if_exists='replace', index=False)
+    archivos = {
+        "puntos": THIS_FOLDER / 'datos/puntos.csv',
+        "lineas": THIS_FOLDER / 'datos/lineas.csv',
+        "poligonos": THIS_FOLDER / 'datos/poligonos.csv',
+    }
+
+    for tabla, archivo in archivos.items():
+        df = pd.read_csv(archivo)
+
+        df.to_sql(
+            tabla,
+            engine,
+            if_exists="replace",
+            index=False
+        )
+
+        print(f"Tabla {tabla} creada")
 
     return render_template('success.html')
 
