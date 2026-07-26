@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-    <title>TIU | Curso de cartografía digital</title>
+    <title>TIU | Interactive GIS Map</title>
 </head>
 
 <style>
@@ -28,7 +28,7 @@
     <form method="POST">
         <div>
             <div style="background-color:#ff5d72; text-align:left">
-                <h3><img src="{{url_for('static', filename='Logo_bl.png')}}" width="140"> Curso de Cartografía Digital</h3>
+                <h3><img src="{{url_for('static', filename='Logo_bl.png')}}" width="140"> Interactive GIS Map</h3>
                 <hr />
             </div>
 
@@ -36,7 +36,7 @@
 
                 <iframe class="map", src="/mapa-generado" width="600" height="480"></iframe>
                 <br/>
-                <p>Seattle es conocida como la cuna de Starbucks, pero este mapa muestra otra perspectiva: la distribución de 269 cafeterías independientes, la Línea 1 del Link Light Rail y los barrios de la ciudad. Más que confirmar una historia conocida, invita a observar cómo los datos revelan los patrones cotidianos que construyen la identidad de un lugar.</p>
+                <p>Este mapa muestra la distribución de 269 cafeterías independientes en Seattle, la Línea 1 del Link Light Rail y los barrios de la ciudad.</p>
 
                 <button type="button" class="btn btn-outline-success" onclick="window.location.href='/mapa-generado'">¡VER MAPA COMPLETO!</button>
                 <br/>
